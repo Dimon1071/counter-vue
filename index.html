@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/theme.css" />
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="container" id="app" v-cloak>
+        <div class="card">
+            <h1> {{ title }}</h1>
+            <div class="form-control">
+                <input type="text" :placeholder="placeholderString" @keypress.enter="addNewNote" v-model="inputValue" />
+            </div>
+            <button class="btn" @click="addNewNote">Добавить</button>
+            <hr />
+            <ul class="list" v-if="noutes.length !== 0">
+                <li class="list-item" v-for="(note, index) in noutes">
+                    {{ index + 1 }}) {{ toUpperCase(note) }}
+                    <button class="btn danger" @click="deleteNote(index)">удалить</button>
+                </li>
+                <hr />
+                <li>
+                    <strong>Общее количество: {{ noutes.length }} </strong> | удвоенно: {{ doubleCountComputed }}
+                </li>
+            </ul>
+            <div v-else>Заметок пока нет. Добавьте новую.</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/main.js"></script>
+</body>
+
+</html>
